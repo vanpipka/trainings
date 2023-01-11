@@ -3,11 +3,8 @@ import openai  # OpenAI Python library to make API calls
 import asyncio
 import requests  # used to download images
 import os  # used to access filepaths
-from PIL import Image  # used to print and edit images
 
-
-# openai.api_key = os.environ.get("OPENAI_API_KEY")
-openai.api_key = "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"
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 IMAGE_DIR = "image"
 
 
@@ -23,6 +20,8 @@ class Dalle():
         self.image_dir = os.path.join(os.curdir, IMAGE_DIR)
         self.generation_response = ""
         self.prompt = ""
+
+        create_path(self.image_dir)
 
     async def create_an_image(self, prompt):
 
@@ -61,22 +60,20 @@ class Dalle():
 
 async def gather_data():
 
-    phrases = ["a knight cat with banana sword",
-               "a knight cat with tomato sword",
-               "a knight cat with cucumber sword",
-               "a knight cat with icecream sword"]
+    phrases = ["a knight cat with banana sword, digital art",
+               "a knight cat with tomato sword, digital art",
+               "a knight cat with cucumber sword, digital art",
+               "a knight cat with icecream sword, digital art"]
     tasks = []
 
     for i in range(len(phrases)):
         tasks.append(asyncio.create_task(Dalle().create_an_image(phrases[i])))
+        break
 
     await asyncio.gather(*tasks)
 
 
 if __name__ == "__main__":
-
     asyncio.run(gather_data())
-
-    print('end')
 
 
