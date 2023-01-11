@@ -4,3 +4,4 @@ __pycache__/
 
 .idea/
 venv/
+open_ai_dalle/image/
