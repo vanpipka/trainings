@@ -68,7 +68,6 @@ async def gather_data():
 
     for i in range(len(phrases)):
         tasks.append(asyncio.create_task(Dalle().create_an_image(phrases[i])))
-        break
 
     await asyncio.gather(*tasks)
 
