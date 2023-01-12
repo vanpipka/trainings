@@ -24,6 +24,9 @@ class JapaneseEngine(IEngine):
     def __str__(self) -> str:
         return self.name
 
+    def kek(self):
+        print("lol")
+
 
 class AmericanEngine(IEngine):
     def power(self) -> None:
@@ -53,8 +56,7 @@ def random_engine(name: str) -> IEngine:
 if __name__ == "__main__":
 
     # fixed
-    j_factory = Factory(JapaneseEngine)
-    j_engine = j_factory.make_engine("GRT")
+    j_engine = Factory(JapaneseEngine).make_engine("GRT")
     j_engine.power()
 
     # random_engine
