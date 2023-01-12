@@ -1,8 +1,8 @@
 # imports
-import openai  # OpenAI Python library to make API calls
+import openai
 import asyncio
-import requests  # used to download images
-import os  # used to access filepaths
+import requests
+import os
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 IMAGE_DIR = "image"
@@ -60,10 +60,11 @@ class Dalle():
 
 async def gather_data():
 
-    phrases = ["a knight cat with banana sword, digital art",
+    phrases = ["removing the metal plug from the hole",
                "a knight cat with tomato sword, digital art",
                "a knight cat with cucumber sword, digital art",
                "a knight cat with icecream sword, digital art"]
+
     tasks = []
 
     for i in range(len(phrases)):
