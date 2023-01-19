@@ -6,3 +6,4 @@ __pycache__/
 venv/
 open_ai_dalle/image/
 text_to_mp3/mp3/
+youtube_video_to_pdf/data/
