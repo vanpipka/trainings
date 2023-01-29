@@ -116,7 +116,7 @@ def butterflies_farming() -> None:
 
                 while True:
 
-                    img_find = pyautogui.locateCenterOnScreen("/static/img_1.png", confidence=0.9)
+                    img_find = pyautogui.locateCenterOnScreen("static\\img_1.png", confidence=0.9)
 
                     if img_find:
 
@@ -127,7 +127,7 @@ def butterflies_farming() -> None:
                     else:
                         break
 
-                img_find = pyautogui.locateCenterOnScreen("/static/img_2.png", confidence=0.9)
+                img_find = pyautogui.locateCenterOnScreen("static\\img_2.png", confidence=0.9)
 
                 if img_find:
                     move_to(exit_coords[0], exit_coords[1], random.randint(1, 3))
