@@ -57,8 +57,9 @@ def autofightings() -> None:
                 fight_coords = pyautogui.locateCenterOnScreen("static\\new_order.png", confidence=0.9)
                 if fight_coords:
                     move_to(fight_coords.x - 350, fight_coords.y, 0)
-                    condition = conditions[1]
-                    break
+                    if pyautogui.locateCenterOnScreen("static\\cancel.png", confidence=0.9):
+                        condition = conditions[1]
+                        break
                 else:
                     move_to(fighting_type_button_coords[0] + random.randint(-15, 15), fighting_type_button_coords[1], 0)
 
@@ -75,10 +76,11 @@ def autofightings() -> None:
                     break
                 elif go_coords:
                     move_to(go_coords[0] + random.randint(-15, 15), go_coords[1], 0)
+                    time.sleep(random.randint(0, 2))
                 elif refresh_coords:
                     move_to(refresh_coords[0] + random.randint(-15, 15), refresh_coords[1], 0)
                 else:
-                    time.sleep(1)
+                    time.sleep(random.randint(0, 3))
 
     # c_width, c_height = pyautogui.position()
     # print(c_width, c_height)
