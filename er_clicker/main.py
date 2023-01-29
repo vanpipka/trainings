@@ -1,15 +1,11 @@
 import pyautogui
 import random
-import scipy
-import numpy as np
 import time
-from scipy import interpolate
 import datetime
 from make_bezier import make_bezier
 
 
 def move_to(x: int, y: int, sleep: float):
-
     pyautogui.MINIMUM_DURATION = 0  # Default: 0.1
     # Minimal number of seconds to sleep between mouse moves.
     pyautogui.MINIMUM_SLEEP = 0  # Default: 0.05
@@ -19,27 +15,27 @@ def move_to(x: int, y: int, sleep: float):
 
     x1, y1 = pyautogui.position()  # Starting position
 
-    ts = [t/100.0 for t in range(101)]
+    ts = [t / 100.0 for t in range(101)]
 
-    xys = [(x1, y1), (random.randint(1,2559), random.randint(1,1436)) ,(x, y)]
+    xys = [(x1, y1), (random.randint(1, 2559), random.randint(1, 1436)), (x, y)]
 
     bezier = make_bezier(xys)
 
     points = bezier(ts)
 
     duration = 0.2
-    timeout = duration / len(points[0])/10
+    timeout = duration / len(points[0]) / 10
 
     for point in points:
         pyautogui.moveTo(point[0], point[1])
         time.sleep(timeout)
 
-    time.sleep(1.5+random.randint(0, 1))
-    pyautogui.click(x+random.randint(-5, 5), y+random.randint(-5, 5))
+    time.sleep(1.5 + random.randint(0, 1))
+    pyautogui.click(x + random.randint(-5, 5), y + random.randint(-5, 5))
     time.sleep(sleep)
 
 
-def autofightings():
+def autofightings() -> None:
     now = datetime.datetime.now()
     print('autofightings: ' + str(now.strftime("%d-%m-%Y %H:%M")))
 
@@ -53,13 +49,14 @@ def autofightings():
 
         if condition == conditions[0]:
 
-            move_to(fighting_button_coords[0]+random.randint(-15, 15), fighting_button_coords[1]+random.randint(-15, 15), 0)
-            move_to(fighting_type_button_coords[0]+random.randint(-15, 15), fighting_type_button_coords[1], 0)
+            move_to(fighting_button_coords[0] + random.randint(-15, 15),
+                    fighting_button_coords[1] + random.randint(-15, 15), 0)
+            move_to(fighting_type_button_coords[0] + random.randint(-15, 15), fighting_type_button_coords[1], 0)
 
             while True:
                 fight_coords = pyautogui.locateCenterOnScreen("static\\new_order.png", confidence=0.9)
                 if fight_coords:
-                    move_to(fight_coords.x-350, fight_coords.y, 0)
+                    move_to(fight_coords.x - 350, fight_coords.y, 0)
                     condition = conditions[1]
                     break
                 else:
@@ -83,21 +80,11 @@ def autofightings():
                 else:
                     time.sleep(1)
 
-    c_width, c_height = pyautogui.position()
-    print(c_width, c_height)
+    # c_width, c_height = pyautogui.position()
+    # print(c_width, c_height)
 
 
-
-    step_count = 1
-    # add_step_count = False
-
-
-
-    # exit_coords = [1487, 410]
-
-
-def butterflies_farming():
-
+def butterflies_farming() -> None:
     now = datetime.datetime.now()
     print('butterflies_farming: ' + str(now.strftime("%d-%m-%Y %H:%M")))
     return
@@ -146,11 +133,10 @@ def butterflies_farming():
             add_step_count = not add_step_count
 
             if add_step_count is False:
-                step_count = step_count+1
+                step_count = step_count + 1
 
 
 def main():
-
     print("Choose the option:")
     print("1. butterflies farming")
     print("2. autofighting")
