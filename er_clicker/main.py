@@ -64,11 +64,13 @@ def autofightings() -> None:
 
                     move_to(fight_coords.x - 350, fight_coords.y, 0)
                     starts_counter += 1
-                    if pyautogui.locateCenterOnScreen("static\\cancel.png", confidence=0.9):
+                    if pyautogui.locateCenterOnScreen("static\\cancel.png", confidence=0.9) \
+                            or pyautogui.locateCenterOnScreen("static\\go.png", confidence=0.9):
                         condition = conditions[1]
                         break
                 else:
                     move_to(fighting_type_button_coords[0] + random.randint(-15, 15), fighting_type_button_coords[1], 0)
+                    time.sleep(random.randint(1,5))
 
         elif condition == conditions[1]:
 
