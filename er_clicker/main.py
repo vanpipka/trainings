@@ -47,6 +47,8 @@ def autofightings() -> None:
 
     while True:
 
+        starts_counter = 0
+
         if condition == conditions[0]:
 
             move_to(fighting_button_coords[0] + random.randint(-15, 15),
@@ -56,7 +58,12 @@ def autofightings() -> None:
             while True:
                 fight_coords = pyautogui.locateCenterOnScreen("static\\new_order.png", confidence=0.9)
                 if fight_coords:
+
+                    if starts_counter == 5:
+                        ValueError("unknown mistake")
+
                     move_to(fight_coords.x - 350, fight_coords.y, 0)
+                    starts_counter += 1
                     if pyautogui.locateCenterOnScreen("static\\cancel.png", confidence=0.9):
                         condition = conditions[1]
                         break
