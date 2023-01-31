@@ -1,10 +1,11 @@
-# imports
+import os
 import openai
 import asyncio
 import requests
-import os
+from settings import settings as _st
 
-openai.api_key = os.environ.get("OPENAI_API_KEY")
+
+openai.api_key = _st.OPEN_AI_KEY
 IMAGE_DIR = "image"
 
 
@@ -60,8 +61,7 @@ class Dalle():
 
 async def gather_data():
 
-    phrases = ["removing the metal plug from the hole",
-               "a knight cat with tomato sword, digital art",
+    phrases = ["a knight cat with tomato sword, digital art",
                "a knight cat with cucumber sword, digital art",
                "a knight cat with icecream sword, digital art"]
 
@@ -75,5 +75,3 @@ async def gather_data():
 
 if __name__ == "__main__":
     asyncio.run(gather_data())
-
-
