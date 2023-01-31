@@ -63,6 +63,8 @@ def autofightings() -> None:
                         ValueError("unknown mistake")
 
                     move_to(fight_coords.x - 350, fight_coords.y, 0)
+                    time.sleep(random.randint(1, 3))
+
                     starts_counter += 1
                     if pyautogui.locateCenterOnScreen("static\\cancel.png", confidence=0.9) \
                             or pyautogui.locateCenterOnScreen("static\\go.png", confidence=0.9):
