@@ -24,28 +24,30 @@ def get_answer(text: str) -> str:
 @app.on_message(filters.text)
 async def my_handler(client, message):
 
-    if message.chat.type != ChatType.PRIVATE:
-        print(message.chat.type)
+    if message.chat.id not in settings.CHATS_ID:
+        #print(f"{message.chat.id} from: {message.from_user.username} text: {message.text}")
         return
 
-    if message.chat.id not in [124635813, 186378602, 902507223, 5019955107, 109701896]:
-        print(f"{message.chat.id} from: {message.from_user.username} text: {message.text}")
-        return
-
-    if message.from_user.id != 124635813:
+    if message.from_user.id != settings.MY_ID:
 
         dialog = []
 
         while True:
+            prev = None
             async for msg in app.get_chat_history(chat_id=message.chat.id, limit=8):
-                dialog.append(f"-{msg.text}")
+                if msg.from_user.id != prev:
+                    dialog.append(f"-{msg.text}")
+                else:
+                    prev = msg.from_user.id
+                    dialog[-1] += f". {msg.text}"
 
             if len(dialog) != 0:
+                print(dialog)
                 break
             else:
                 time.sleep(2)
 
-        text = "Ответь на последнюю фразу, отвечай на ТЫ и максимально дерзко:" + str("\n".join(reversed(dialog)) + ".")
+        text = settings.REQUEST_PRFX + str("\n".join(reversed(dialog)) + ".")
 
         answer = get_answer(text)
 

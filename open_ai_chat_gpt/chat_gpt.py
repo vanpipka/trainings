@@ -24,7 +24,7 @@ class ChatPGT:
             self._response = openai.Completion.create(
                         model="text-davinci-003",
                         prompt=self.phrase,
-                        max_tokens=200,
+                        max_tokens=600,
                         temperature=0.8)
 
             for answer in self._response.get("choices", []):
