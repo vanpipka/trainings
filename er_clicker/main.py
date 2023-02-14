@@ -36,11 +36,14 @@ def move_to(x: int, y: int, sleep: float):
 
 
 def autofightings() -> None:
+    # c_width, c_height = pyautogui.position()
+    # print(c_width, c_height)
+    # return
     now = datetime.datetime.now()
     print('autofightings: ' + str(now.strftime("%d-%m-%Y %H:%M")))
 
-    fighting_button_coords = (1207, 166)
-    fighting_type_button_coords = (1078, 253)
+    fighting_button_coords = (601, 183)  # (1207, 166)
+    fighting_type_button_coords = (443, 270)  # (1078, 253)
 
     conditions = ("search_new", "waiting_for", "fighting")
     condition = conditions[0]

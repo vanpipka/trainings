@@ -31,22 +31,26 @@ class Dalle():
         try:
             self.generation_response = openai.Image.create(
                 prompt=prompt,
-                n=2,
+                n=1,
                 size="1024x1024",
                 response_format="url",
             )
 
             for i in range(len(self.generation_response["data"])):
 
-                Dalle._save_image_(f"{self.generation_response['created']}_{i}.png",
+                file_name = f"{self.generation_response['created']}_{i}.png"
+
+                Dalle._save_image_(file_name,
                                    self.image_dir,
                                    self.generation_response["data"][i]["url"])
 
-            print(prompt)
+            return file_name
 
         except openai.error.OpenAIError as e:
             print(e.http_status)
             print(e.error)
+
+        return ""
 
     @staticmethod
     def _save_image_(file_name, img_dir, url):

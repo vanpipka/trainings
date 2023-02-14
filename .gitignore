@@ -6,6 +6,7 @@ __pycache__/
 venv/
 open_ai_dalle/image/
 open_ai_dalle/settings/
+open_ai_chat_gpt/image/
 open_ai_chat_gpt/settings/
 open_ai_chat_gpt/my_account.session
 open_ai_chat_gpt/my_account.session-journal
